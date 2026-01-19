@@ -7,12 +7,17 @@ dotenv.config({
 });
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+
+//basic config
+app.use(express.json({ limit: "16kb" }));
+app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
 //import routes
 import healthCheckRouter from "./routes/healthcheck.routes";
+import pulses from "./routes/pulse.routes";
 
 app.use("/healthcheck", healthCheckRouter);
+app.use("/pulses", pulses);
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello from Express + TypeScript Server!");
