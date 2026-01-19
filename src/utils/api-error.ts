@@ -1,6 +1,6 @@
 class ApiError<T = unknown> extends Error {
-    public readonly statusCode: number;
     public readonly success: false;
+    public readonly statusCode: number;
     public readonly errors: string[];
     public readonly data: T | null;
     constructor(
